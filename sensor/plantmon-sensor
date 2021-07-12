@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+FEED=$(cat /etc/hostname)
+DATA=$(/usr/bin/plantmon-sensor-read)
+/usr/bin/plantmon-sensor-post $FEED $DATA

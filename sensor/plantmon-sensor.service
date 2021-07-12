@@ -1,0 +1,7 @@
+[Unit]
+Description=plantmon sensor service
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/plantmon-sensor

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: $0 aio-feed data"
+    exit 1
+fi
+source /usr/share/piky/adafruit-io-secrets.env
+FEED=$1
+DATA=$2
+PAYLOAD="{\"datum\":{\"value\": \"$DATA\"}}"
+curl \
+    -s \
+    -H "X-AIO-Key: ${IO_KEY}" \
+    -H "Content-Type: application/json" \
+    -X POST \
+    -d "$PAYLOAD" \
+    https://io.adafruit.com/api/v2/$IO_USERNAME/feeds/plantmon.$FEED/data \
+    > /dev/null

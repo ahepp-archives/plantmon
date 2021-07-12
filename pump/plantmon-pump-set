@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]] ; then
+    echo "Usage: $0 gpio value"
+fi
+
+RELAY_GPIO=$1
+VALUE=$2
+echo $VALUE > /sys/class/gpio/gpio$RELAY_GPIO/value

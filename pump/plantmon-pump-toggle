@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]] ; then
+    echo "Usage: $0 gpio"
+fi
+
+RELAY_GPIO=$1
+STATE=$(cat /sys/class/gpio/gpio$RELAY_GPIO/value)
+FLIPPED=$(( ! $STATE ))
+echo $FLIPPED
+echo $FLIPPED > /sys/class/gpio/gpio$RELAY_GPIO/value

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+BUS=1
+ADDR=0x36
+BASE=0x0f   # Register for capacitors
+OFFSET=0x10 # Command to read first cap
+
+BYTES=$(i2ctransfer -y $BUS w2@0x36 $BASE $OFFSET r2)
+HEX=$(printf '%.2x%.2x\n' $BYTES)
+DEC=$(printf '%d\n' $((16#$HEX)))
+
+#echo -e "$DEC\t\t$HEX\t\t$BYTES"
+echo $DEC
