@@ -2,4 +2,8 @@
 
 FEED=$(cat /etc/hostname)
 DATA=$(/usr/bin/plantmon-sensor-read)
+MAX=2500
+if [[ "$DATA" -gt "$MAX" ]] ; then
+  exit 1
+fi
 /usr/bin/plantmon-sensor-post $FEED $DATA
